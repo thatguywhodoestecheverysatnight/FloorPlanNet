@@ -1,0 +1,31 @@
+# Browser demo model: DeepLabV3+ / MobileNetV3-Large trained from scratch on
+# procedurally generated plans. Runs on CPU in ~1 h; exported to ONNX for the web app.
+name: synthetic_lite
+output_dir: runs
+seed: 7
+log_every: 25
+max_iters: 2400
+data:
+  dataset: folder
+  root: data/synthetic
+  taxonomy: coarse
+  crop_size: 256
+  max_side: 512
+  num_workers: 1
+model:
+  arch: lite
+  pretrained: false
+  aux_loss: true
+loss:
+  ce_weight: 1.0
+  dice_weight: 0.5
+  boundary_weight: 2.0
+optim:
+  lr: 0.002
+  backbone_lr_mult: 1.0
+  weight_decay: 0.0001
+  epochs: 100
+  batch_size: 8
+  warmup_iters: 150
+  amp: false
+  ema_decay: 0.998

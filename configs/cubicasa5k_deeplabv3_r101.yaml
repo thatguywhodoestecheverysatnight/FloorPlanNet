@@ -1,0 +1,34 @@
+# Main benchmark config: DeepLabV3 / ResNet-101 (OS 8), coarse 5-class taxonomy.
+# 1x A100 40GB: ~7 h for 80 epochs at 512 crops, batch 8.
+name: cc5k_deeplabv3_r101
+output_dir: runs
+seed: 42
+eval_every: 2
+data:
+  dataset: cubicasa5k
+  root: data/cubicasa5k
+  taxonomy: coarse
+  image_file: F1_scaled.png
+  crop_size: 512
+  max_side: 1024
+  num_workers: 8
+model:
+  arch: deeplabv3_resnet101
+  pretrained: true
+  aux_loss: true
+loss:
+  ce_weight: 1.0
+  dice_weight: 0.5
+  boundary_weight: 2.0
+  # Starting point only (bg, wall, room, door, window). Recompute from your split with
+  # `python scripts/prepare_cubicasa.py`, which prints inverse-sqrt-frequency weights.
+  class_weights: [0.6, 1.6, 0.7, 2.6, 2.4]
+optim:
+  lr: 0.0005
+  backbone_lr_mult: 0.1
+  weight_decay: 0.0001
+  epochs: 80
+  batch_size: 8
+  warmup_iters: 1000
+  amp: true
+  ema_decay: 0.9995

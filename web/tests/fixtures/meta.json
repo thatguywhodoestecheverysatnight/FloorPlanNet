@@ -1,0 +1,67 @@
+[
+ {
+  "file": "mask_0.bin",
+  "width": 512,
+  "height": 512,
+  "python": {
+   "rooms": 8,
+   "walls": 12,
+   "doors": 9,
+   "windows": 5,
+   "total_wall_length_px": 3075.7,
+   "total_room_area_px": 139245.3
+  }
+ },
+ {
+  "file": "mask_1.bin",
+  "width": 512,
+  "height": 512,
+  "python": {
+   "rooms": 6,
+   "walls": 9,
+   "doors": 7,
+   "windows": 8,
+   "total_wall_length_px": 2617.8,
+   "total_room_area_px": 139789.7
+  }
+ },
+ {
+  "file": "mask_2.bin",
+  "width": 512,
+  "height": 512,
+  "python": {
+   "rooms": 8,
+   "walls": 12,
+   "doors": 12,
+   "windows": 10,
+   "total_wall_length_px": 2730.9,
+   "total_room_area_px": 126053.7
+  }
+ },
+ {
+  "file": "pred_0.bin",
+  "width": 512,
+  "height": 512,
+  "python": {
+   "rooms": 6,
+   "walls": 8,
+   "doors": 7,
+   "windows": 5,
+   "total_wall_length_px": 2837.5,
+   "total_room_area_px": 180646.6
+  }
+ },
+ {
+  "file": "pred_1.bin",
+  "width": 512,
+  "height": 512,
+  "python": {
+   "rooms": 7,
+   "walls": 12,
+   "doors": 9,
+   "windows": 6,
+   "total_wall_length_px": 2771.8,
+   "total_room_area_px": 141908.0
+  }
+ }
+]

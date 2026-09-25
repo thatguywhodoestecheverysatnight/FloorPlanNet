@@ -1,0 +1,7 @@
+# DeepLabV3+ with a timm ResNet-50 encoder (stride-4 decoder: sharper walls).
+name: cc5k_deeplabv3plus_r50
+eval_every: 2
+data: { dataset: cubicasa5k, root: data/cubicasa5k, taxonomy: coarse, crop_size: 512, max_side: 1024, num_workers: 8 }
+model: { arch: deeplabv3plus_timm, encoder: resnet50, pretrained: true, output_stride: 16, aux_loss: true }
+loss: { dice_weight: 0.5, boundary_weight: 2.0, class_weights: [0.6, 1.6, 0.7, 2.6, 2.4] }
+optim: { lr: 0.0006, backbone_lr_mult: 0.1, epochs: 80, batch_size: 12, warmup_iters: 1000, amp: true, ema_decay: 0.9995 }

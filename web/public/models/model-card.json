@@ -1,0 +1,83 @@
+{
+  "name": "floorplannet-lite",
+  "arch": "DeepLabV3+ (ASPP, stride-4 decoder), MobileNetV3-Large dilated encoder",
+  "params_m": 4.03,
+  "size_mb": 4.19,
+  "precision": "int8",
+  "input": "RGB, long side 512 px, ImageNet normalisation",
+  "classes": [
+    "background",
+    "wall",
+    "room",
+    "door",
+    "window"
+  ],
+  "trained_on": "procedurally generated floor plans (scripts/make_synthetic.py), no ImageNet pretraining",
+  "iterations": 2400,
+  "val": {
+    "mIoU": 0.9378136387210659,
+    "pixel_acc": 0.994991683959961,
+    "per_class_iou": {
+      "background": 0.9956798926954201,
+      "wall": 0.968877633438355,
+      "room": 0.9931281553237449,
+      "door": 0.8511575064466518,
+      "window": 0.8802250057011579
+    }
+  },
+  "curve": [
+    {
+      "iter": 375,
+      "mIoU": 0.2707951241018035
+    },
+    {
+      "iter": 750,
+      "mIoU": 0.8673440286266331
+    },
+    {
+      "iter": 1125,
+      "mIoU": 0.9086373328689412
+    },
+    {
+      "iter": 1500,
+      "mIoU": 0.9261314698375245
+    },
+    {
+      "iter": 1875,
+      "mIoU": 0.9342052773966554
+    },
+    {
+      "iter": 2250,
+      "mIoU": 0.9388168047005652
+    },
+    {
+      "iter": 2400,
+      "mIoU": 0.9388209787533006
+    }
+  ],
+  "notes": [
+    "Validated on held-out synthetic plans, not on CubiCasa5K. Expect lower accuracy on real scans until you fine-tune.",
+    "For production accuracy train configs/cubicasa5k_deeplabv3_r101.yaml on a GPU and serve it through the API.",
+    "Best on clean, roughly axis-aligned plans with dark walls. Very faint or hand-drawn lines may be missed."
+  ],
+  "vectorization": {
+    "plans": 200,
+    "rooms": {
+      "precision": 0.9813,
+      "recall": 0.9919,
+      "f1": 0.9866,
+      "matched_mean_iou": 0.9745,
+      "exact_count_rate": 0.895
+    },
+    "doors": {
+      "precision": 0.9748,
+      "recall": 0.996,
+      "f1": 0.9853
+    },
+    "windows": {
+      "precision": 0.9874,
+      "recall": 1.0,
+      "f1": 0.9937
+    }
+  }
+}

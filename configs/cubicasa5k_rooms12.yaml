@@ -1,0 +1,7 @@
+# CubiCasa5K 12 room-type benchmark taxonomy (+ door/window = 14 classes).
+name: cc5k_rooms12_r101
+eval_every: 2
+data: { dataset: cubicasa5k, root: data/cubicasa5k, taxonomy: cubicasa12, crop_size: 512, max_side: 1024, num_workers: 8 }
+model: { arch: deeplabv3_resnet101, pretrained: true, aux_loss: true }
+loss: { dice_weight: 0.5, boundary_weight: 1.5 }
+optim: { lr: 0.0005, backbone_lr_mult: 0.1, epochs: 100, batch_size: 8, warmup_iters: 1000, amp: true, ema_decay: 0.9995 }

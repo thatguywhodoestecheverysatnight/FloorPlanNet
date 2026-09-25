@@ -1,0 +1,8 @@
+# Fine-tune the browser model on CubiCasa5K, starting from the synthetic checkpoint:
+#   floorplannet train -c configs/cubicasa5k_finetune_lite.yaml --resume floorplannet_lite_synthetic.pt
+# (a weights-only checkpoint, published as a release asset, starts a fresh LR schedule)
+name: cc5k_lite
+data: { dataset: cubicasa5k, root: data/cubicasa5k, taxonomy: coarse, crop_size: 512, max_side: 1024, num_workers: 8 }
+model: { arch: lite, pretrained: true, aux_loss: true }
+loss: { dice_weight: 0.5, boundary_weight: 2.0 }
+optim: { lr: 0.001, backbone_lr_mult: 0.5, epochs: 60, batch_size: 16, warmup_iters: 500, amp: true, ema_decay: 0.999 }
