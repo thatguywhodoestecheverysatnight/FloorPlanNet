@@ -1,0 +1,7 @@
+data/
+runs/
+web/node_modules/
+web/.next/
+**/__pycache__/
+.git/
+*.pt

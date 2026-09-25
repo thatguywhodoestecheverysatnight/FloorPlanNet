@@ -1,0 +1,12 @@
+# Core (training + inference)
+torch>=2.2
+torchvision>=0.17
+timm>=0.9
+numpy>=1.24
+opencv-python-headless>=4.8
+scipy>=1.10
+scikit-image>=0.21
+pyyaml>=6.0
+onnx>=1.15
+onnxruntime>=1.17
+ezdxf>=1.1

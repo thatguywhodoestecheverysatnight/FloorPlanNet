@@ -1,0 +1,17 @@
+services:
+  api:
+    build: { context: ., dockerfile: serve/Dockerfile }
+    ports: ["8000:8000"]
+    environment:
+      - ALLOWED_ORIGINS=http://localhost:3000
+      - WORKERS=2
+    restart: unless-stopped
+  web:
+    image: node:20-alpine
+    working_dir: /app
+    command: sh -c "npm ci && npm run build && npm start"
+    volumes: ["./web:/app"]
+    ports: ["3000:3000"]
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    depends_on: [api]

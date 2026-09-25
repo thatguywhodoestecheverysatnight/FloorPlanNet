@@ -1,0 +1,11 @@
+# Minimal runtime for the ONNX inference API (no torch)
+numpy>=1.24
+opencv-python-headless>=4.8
+scipy>=1.10
+scikit-image>=0.21
+pyyaml>=6.0
+onnxruntime>=1.17
+ezdxf>=1.1
+fastapi>=0.110
+uvicorn[standard]>=0.27
+python-multipart>=0.0.9

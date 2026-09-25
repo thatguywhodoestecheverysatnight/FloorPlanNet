@@ -1,0 +1,12 @@
+# GPU training image. Build: docker build -f Dockerfile.train -t floorplannet-train .
+# Run:   docker run --gpus all --shm-size 16g -v $PWD/data:/work/data -v $PWD/runs:/work/runs floorplannet-train \
+#          floorplannet train -c configs/cubicasa5k_deeplabv3_r101.yaml
+FROM pytorch/pytorch:2.4.0-cuda12.4-cudnn9-runtime
+ENV PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1
+RUN apt-get update && apt-get install -y --no-install-recommends libglib2.0-0 libgl1 wget unzip && rm -rf /var/lib/apt/lists/*
+WORKDIR /work
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+COPY . .
+RUN pip install -e .
+CMD ["floorplannet", "--help"]
